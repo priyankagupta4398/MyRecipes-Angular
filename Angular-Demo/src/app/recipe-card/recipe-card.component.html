@@ -5,18 +5,20 @@
         <div class="row ">
             <div class="col-md-3 d-flex justify-content-around paddingTop" *ngFor="let recipe of RecipeArray">
                 <div class="card border-dark" appHighlight>
-                    <img src="{{ recipe.image }}" class="card-img-top" alt="..." >
+                    <img src="{{ recipe.image }}" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <div>
-                            <h5>{{recipe.name}}</h5>&nbsp;<span class="Veg-Non-veg">n</span>
-                        </div>
+                        <h5 class="card-title">{{recipe.name}}</h5>
                         <h6>👩‍🍳 {{recipe.chef}}</h6>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, 
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti,
                             consectetur unde animi cum nesciunt sint, blanditiis ratione nostrum corporis error </p>
+                        <div *ngIf="recipe.type == nv ; else greenButton">
+                            <button class="non-veg">{{recipe.type}}</button>
+                        </div>
+                        <ng-template #greenButton>
+                            <button class="veg">{{recipe.type}}</button>
+                        </ng-template>
                     </div>
-                    <div class="card-footer">
-                        <small class="text-muted">Type : {{recipe.type}}</small>
-                    </div>
+
                 </div>
             </div>
         </div>
