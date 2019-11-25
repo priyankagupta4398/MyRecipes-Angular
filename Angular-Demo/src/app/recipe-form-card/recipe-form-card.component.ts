@@ -8,6 +8,15 @@ import { Component, OnInit } from '@angular/core';
 
 export class RecipeFormCardComponent implements OnInit { 
   
+    recipeName : string
+    chefName : string
+    type:string
+    describtion:string
+    imageUrl : string
+
+    addRecipe(){
+            console.log(this.imageUrl)
+    }
     constructor() {
   
     }
