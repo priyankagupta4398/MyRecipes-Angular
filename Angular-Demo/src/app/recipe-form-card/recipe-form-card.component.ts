@@ -1,31 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'app-recipe-form-card',
-    templateUrl:'./recipe-form-card.component.html',
+    templateUrl: './recipe-form-card.component.html',
     styleUrls: ['./recipe-form-card.component.scss']
 })
 
-export class RecipeFormCardComponent implements OnInit { 
-  
-    recipeName : string
-    chefName : string
-    type:string
-    describtion:string
-    imageUrl : string
+export class RecipeFormCardComponent implements OnInit {
 
-    addRecipe(){
-            console.log(this.imageUrl)
-    }
+    @Output() backToParent = new EventEmitter<any>();
+
+    Recipes = [{
+        name: String,
+        chef: String,
+        image: String,
+        type: String
+    }];
+    // addedRecipes = [];
+
     constructor() {
-  
     }
-  
+
     ngOnInit() {
-  
-  
-  
     }
-  
-  }
-  
+
+    addRecipes() {
+        // this.addedRecipes = this.Recipes;
+        console.log(this.Recipes);
+        this.backToParent.emit({addedRecipes : this.Recipes});
+    }
+
+}

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
   title = 'Angular-Demo';
 
   recipes = [
@@ -34,6 +36,12 @@ export class AppComponent {
       type: 'v'
     },
   ];
+
+  AckFromForm(event) {
+    // console.log(event.addedRecipes);
+    this.recipes.push(event.addedRecipes);
+    console.log(this.recipes);
+  }
 
 
 }
