@@ -1,9 +1,28 @@
 .custom{
-    height: 50px;
+    height: 30px;
     width: 300px;
 }
 
 
 .example-element {
-    margin-bottom: 1rem;
+    margin-bottom: 10px;
+  }
+  
+.form-padding{
+    padding: 50px
+}
+
+.form-bg-img {
+    /* The image used */
+    background-image: url("src/assets/formBgImage.jpeg");
+  
+    /* Control the height of the image */
+    
+  
+   
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
   }

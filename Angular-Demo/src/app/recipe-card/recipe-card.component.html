@@ -1,5 +1,5 @@
 <div class="container">
-    <h3 class="text-center text-uppercase font-weight-bold">List of Recipes</h3>
+    <h3 class="text-center text-uppercase font-weight-bold paddingTop" style="color: white">List of Recipes</h3>
 
     <div *ngIf="recipes.length > 0;else noDataFound">
         <div class="row">
@@ -23,7 +23,7 @@
 
     <ng-template #noDataFound>
         <div>
-            <h3 class="text-center">No Data Found</h3>
+            <h3 class="text-center" style="color:white">No Data Found</h3>
         </div>
     </ng-template>
 </div>
