@@ -10,12 +10,17 @@ export class RecipeFormCardComponent implements OnInit {
 
     @Output() backToParent = new EventEmitter<any>();
 
-    Recipes = [{
-        name: String,
-        chef: String,
-        image: String,
-        type: String
-    }];
+    name: string = ""
+    chef:string = ""
+    image: string = ""
+    type: string = ""
+
+    // Recipes = [{
+    //     name: String,
+    //     chef: String,
+    //     image: String,
+    //     type: String
+    // }];
     // addedRecipes = [];
 
     constructor() {
@@ -26,8 +31,8 @@ export class RecipeFormCardComponent implements OnInit {
 
     addRecipes() {
         // this.addedRecipes = this.Recipes;
-        console.log(this.Recipes);
-        this.backToParent.emit({addedRecipes : this.Recipes});
+        //console.log(this.Recipes);
+        this.backToParent.emit({addedRecipes : [{name: this.name,chef:this.chef,type:this.type,image:this.image}]});
     }
 
 }

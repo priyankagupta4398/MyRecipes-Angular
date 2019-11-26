@@ -39,7 +39,7 @@ export class AppComponent {
 
   AckFromForm(event) {
     // console.log(event.addedRecipes);
-    this.recipes.push(event.addedRecipes);
+    this.recipes.push(event.addedRecipes[0]);
     console.log(this.recipes);
   }
 
