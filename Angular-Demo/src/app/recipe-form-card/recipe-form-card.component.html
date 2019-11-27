@@ -12,6 +12,10 @@
                 <input  class="form-control" #input type="text" placeholder="Add your name here" [(ngModel)]="chef" [ngModelOptions]="{standalone: true}" /> 
             </div>
             <div class="form-group">
+                    <label  class="form-control" class="font-weight-bold"> Description:  </label> <br>
+                    <textarea  class="form-control" #input type="text-area" [(ngModel)]="description" [ngModelOptions]="{standalone: true}" > </textarea> 
+            </div>
+            <div class="form-group">
                 <label  class="form-control" class="font-weight-bold"> Type of Food:</label> <br>
                 <input  class="form-control" #input type="text" placeholder="Veg or Non-veg" [(ngModel)]="type" [ngModelOptions]="{standalone: true}"/> 
             </div>
