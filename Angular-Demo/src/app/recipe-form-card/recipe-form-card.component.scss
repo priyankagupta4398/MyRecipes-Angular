@@ -5,11 +5,11 @@
 
 
 .example-element {
-    margin-bottom: 10px;
+    margin-bottom: -10px;
   }
   
 .form-padding{
-    padding: 50px
+    padding: 25px
 }
 
 .form-bg-img {
@@ -26,3 +26,7 @@
     background-size: cover;
     position: relative;
   }
+
+.marginTop{
+  padding-top: 15px
+}

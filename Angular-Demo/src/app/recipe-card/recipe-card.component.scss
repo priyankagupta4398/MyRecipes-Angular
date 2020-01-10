@@ -1,13 +1,33 @@
-.custom {
-    height: 425px;
-    width: 335px;
-    
-    .custom-img {
-        height: 225px;
-    }
+.custom-img {
+    height: 225px;
 }
 
 .paddingTop{
     margin-top: 10px
 }
 
+.non-veg {
+    background-color: red;
+}
+.veg{
+    background-color: green;
+}
+
+.dot {
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+.veg-Non-Veg{
+    position: relative;
+    height: 10px;
+    width: 10px;
+    margin-top: 16px;
+    margin-left: 5px;   
+}
+
+.marginStart{
+    margin-left: 3px
+}
