@@ -1,13 +1,22 @@
 <div class="container">
-    <h3 class="text-center text-uppercase font-weight-bold paddingTop" style="color: white">List of Recipes</h3>
+    <br>
+    <h3 class="text-center text-uppercase font-weight-bold paddingTop" style="color: white">My Recipes</h3>
+    <br>
+    <form class="example" action="action_page.php">
+        <input type="text" placeholder="Search.." name="search">
+        <button type="submit">Search</button>
+      </form>
+      <br>
+
+      <h3 class="font-weight-bold paddingTop" style="color: white">Favourites</h3>
 
     <div *ngIf="RecipeArray.length > 0;else noDataFound">
         <div class="row ">
             <div class="col-md-3 d-flex justify-content-around paddingTop" *ngFor="let recipe of RecipeArray">
                 <div class="card border-dark" appHighlight>
                     <img src="{{ recipe.image }}" class="card-img-top custom-img" alt="Not Found" onerror="this.src='https://cdn.dribbble.com/users/189859/screenshots/3639645/abc.gif'">
-                    <button width = "20" id="add_fav" (click)= "add_removeFavourite()"><img width = "20"src="/assets/heart.png"/></button>
                     <div class="card-body">
+                        
                         <div class="row marginStart">
                             <div class="col-s-14">
                                    <h3>{{recipe.name}}</h3> 

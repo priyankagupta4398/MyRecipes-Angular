@@ -1,4 +1,5 @@
 <div class = "bg-img">
+    <app-recipe-home [RecipeArray]="recipes" ></app-recipe-home>
     <app-recipe-form-card (backToParent)= "AckFromForm($event)"></app-recipe-form-card>
     <app-recipe-card [RecipeArray]="recipes"></app-recipe-card>
 </div>

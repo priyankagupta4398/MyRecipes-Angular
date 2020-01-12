@@ -49,4 +49,8 @@ export class RecipeCardComponent implements OnInit, OnChanges {
     console.log(this.RecipeArray);
   }
 
+  add_removeFavourite() {
+    // console.log(this.favFlag);
+}
+
 }

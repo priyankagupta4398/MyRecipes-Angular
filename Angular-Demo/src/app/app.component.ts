@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast'; 
 
 @Component({
   selector: 'app-root',
@@ -33,12 +33,12 @@ export class AppComponent {
     //   image: 'http://eatbook.sg/wp-content/uploads/2018/06/Century-Square-Food-Two-Hana.jpg',
     //   type: 'Non-Veg'
     // },
-    // {
-    //   name: 'Veg. Pulav',
-    //   chef: 'Tarla Dalal',
-    //   image: 'https://media-cdn.tripadvisor.com/media/photo-p/0e/75/7b/5d/photo3jpg.jpg',
-    //   type: 'Veg'
-    // },
+    {
+      name: 'Veg. Pulav',
+      chef: 'Tarla Dalal',
+      image: 'https://media-cdn.tripadvisor.com/media/photo-p/0e/75/7b/5d/photo3jpg.jpg',
+      type: 'Veg'
+    },
   ];
 
   AckFromForm(event) {
