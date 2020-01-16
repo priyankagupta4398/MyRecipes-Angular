@@ -10,7 +10,7 @@ import { RecipeModel } from 'src/models/RecipeModel.model';
 })
 
 export class RecipeFormCardComponent implements OnInit {
-    constructor(private loggerService: Logger, private recipeManager: RecipeManager) {}
+    constructor(private loggerService: Logger, private recipeManager: RecipeManager) { }
     @Output() backToParent = new EventEmitter<any>();
 
     name = '';
@@ -26,9 +26,9 @@ export class RecipeFormCardComponent implements OnInit {
         let newRecipe = new RecipeModel();
         newRecipe = {
             name: this.name,
-            chef : this.chef,
-            image : this.image,
-            type : this.type
+            chef: this.chef,
+            image: this.image,
+            type: this.type
 
         };
         this.recipeManager.addNewRecipe(newRecipe);
