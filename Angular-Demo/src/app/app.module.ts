@@ -7,6 +7,8 @@ import { RecipeHomeComponent} from './recipe-home/recipe-home.component'
 import { RecipeFormCardComponent } from './recipe-form-card/recipe-form-card.component'
 import { RecipeCardComponent } from './recipe-card/recipe-card.component';
 import { HighlightDirective } from './highlight.directive';
+import { Logger } from 'src/service/Logger.service';
+import { RecipeManager } from 'src/service/RecipeManager.service';
 // import { Routing } from './app.routing.module';
 
 @NgModule({
@@ -22,7 +24,7 @@ import { HighlightDirective } from './highlight.directive';
     FormsModule
     // Routing
   ],
-  providers: [],
+  providers: [Logger, RecipeManager],
   bootstrap: [AppComponent]
 })
 
