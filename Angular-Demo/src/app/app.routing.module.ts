@@ -1,29 +1,36 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { NgModule } from '@angular/core';
 
-@Component({
-  selector: 'app-routing'
+import {
+  Routes,
+  RouterModule
+} from '@angular/router';
+
+import { RecipeCardComponent } from './recipe-card/recipe-card.component';
+import { RecipeFormCardComponent } from './recipe-form-card/recipe-form-card.component';
+import { RecipeHomeComponent } from './recipe-home/recipe-home.component';
+
+
+const routes: Routes = [
+  {
+    path: '/',
+    component: RecipeHomeComponent,
+  },
+    {
+      path: '/allRecipe',
+      component: RecipeCardComponent,
+    },
+    {
+      path: '/addRecipe',
+      component: RecipeFormCardComponent,
+    },
+  ];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
-export class Routing implements OnInit, OnChanges {
 
-  @Input() Route;
-
-//   const appRoutes : Route = [
-//     {path: '/', component: RecipeHomeComponent },
-//     {path : '/add-new', component : RecipeFormCardComponent}, 
-//     {path : '/all-recipe', component : RecipeCardComponent }
-// ]
+export class AppRoutingModule { }
 
 
-  constructor() {
 
-  }
-
-  ngOnInit() {
-     console.log();
-  }
-
-  ngOnChanges() {
-    console.log();
-  }
-
-}

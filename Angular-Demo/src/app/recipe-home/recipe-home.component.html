@@ -2,6 +2,26 @@
     <br>
     <h3 class="text-center text-uppercase font-weight-bold paddingTop" style="color: white">My Recipes</h3>
     <br>
+    <div id="outer">
+        <a style="float: left; width: 200px" class="inner nav-item nav-link active" routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}" routerLink="/" >Home</a>
+        <!-- <a style="float: left; width: 200px" class="inner" routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}" routerLink="/" >Add Recipe</a>
+        <a style="float: left; width: 200px" class="inner"routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}" routerLink="/" >All Recipe</a> -->
+    </div>
+    <!-- <div>
+            <a class="nav-item nav-link active" routerLinkActive="active"
+              [routerLinkActiveOptions]="{exact: true}" routerLink="/">Home<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" routerLinkActive="active"
+              routerLink="about-us">About Us</a>
+            <a class="nav-item nav-link" routerLinkActive="active"
+              routerLink="user-info">User Info</a>
+            <a class="nav-item nav-link" routerLinkActive="active"
+              routerLink="contact-us">Contact Us</a>        
+    </div> -->
+    <br>
+    <br>
     <form class="example" action="action_page.php">
         <input type="text" placeholder="Search.." name="search">
         <button type="submit">Search</button>
