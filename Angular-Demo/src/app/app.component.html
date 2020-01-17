@@ -1,5 +1,14 @@
 <div class = "bg-img">
-    <app-recipe-home [RecipeArray]="recipes" ></app-recipe-home>
-    <app-recipe-form-card (backToParent)= "AckFromForm($event)"></app-recipe-form-card>
-    <app-recipe-card [RecipeArray]="recipes"></app-recipe-card>
+    <br>
+    <h3 class="text-center text-uppercase font-weight-bold paddingTop" style="color: white">My Recipes</h3>
+    <br>
+    <div>
+        <a style="float: left; width: 200px" class="inner nav-item nav-link active" routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}" routerLink="/" >Home</a>
+        <a style="float: left; width: 200px" class="inner" routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}" routerLink="/addRecipe" >Add Recipe</a>
+        <a style="float: left; width: 200px" class="inner"routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}" routerLink="/allRecipe" >All Recipe</a>
+    </div>
+    <router-outlet></router-outlet>
 </div>

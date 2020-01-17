@@ -12,21 +12,21 @@ import { RecipeHomeComponent } from './recipe-home/recipe-home.component';
 
 const routes: Routes = [
   {
-    path: '/',
+    path: '',
     component: RecipeHomeComponent,
   },
     {
-      path: '/allRecipe',
+      path: 'allRecipe',
       component: RecipeCardComponent,
     },
     {
-      path: '/addRecipe',
+      path: 'addRecipe',
       component: RecipeFormCardComponent,
     },
   ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 

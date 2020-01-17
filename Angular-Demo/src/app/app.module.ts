@@ -21,7 +21,8 @@ import { RecipeManager } from 'src/service/RecipeManager.service';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [Logger, RecipeManager],
   bootstrap: [AppComponent]
