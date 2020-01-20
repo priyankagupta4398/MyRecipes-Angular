@@ -1,7 +1,6 @@
 <div class = "bg-img">
-    <br>
-    <h3 class="text-center text-uppercase font-weight-bold paddingTop" style="color: white">My Recipes</h3>
-    <br>
+    <div>
+
     <div>
         <a style="float: left; width: 200px" class="inner nav-item nav-link active" routerLinkActive="active"
         [routerLinkActiveOptions]="{exact: true}" routerLink="/" >Home</a>
@@ -10,5 +9,11 @@
         <a style="float: left; width: 200px" class="inner"routerLinkActive="active"
         [routerLinkActiveOptions]="{exact: true}" routerLink="/allRecipe" >All Recipe</a>
     </div>
-    <router-outlet></router-outlet>
+    <br>
+    <br>
+    <router-outlet>
+
+    </router-outlet>
+</div>
+
 </div>

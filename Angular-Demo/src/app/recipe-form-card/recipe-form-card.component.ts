@@ -20,18 +20,27 @@ export class RecipeFormCardComponent implements OnInit {
     type = '';
 
     ngOnInit() {
+        this.loggerService.demologger('Form Add New Recipe Called');
     }
 
     addRecipes() {
         let newRecipe = new RecipeModel();
         newRecipe = {
+            id: null,
             name: this.name,
             chef: this.chef,
             image: this.image,
-            type: this.type
+            type: this.type,
+            isFavourite: false,
+            description: this.description
 
         };
         this.recipeManager.addNewRecipe(newRecipe);
+        this.name = '';
+        this.chef = '';
+        this.description = '';
+        this.image = '';
+        this.type = '';
     }
 
 }

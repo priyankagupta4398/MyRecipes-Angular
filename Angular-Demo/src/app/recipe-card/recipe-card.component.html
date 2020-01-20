@@ -1,29 +1,35 @@
 <div class="container">
     <h3 class="text-center text-uppercase font-weight-bold paddingTop" style="color: white">List of Recipes</h3>
-
-    <div *ngIf="RecipeArray.length > 0;else noDataFound">
-        <div class="row ">
-            <div class="col-md-3 d-flex justify-content-around paddingTop" *ngFor="let recipe of RecipeArray">
-                <div class="card border-dark" appHighlight>
-                    <img src="{{ recipe.image }}" class="card-img-top custom-img" alt="Not Found" onerror="this.src='https://cdn.dribbble.com/users/189859/screenshots/3639645/abc.gif'">
-                    <button width = "20" id="add_fav" (click)= "add_removeFavourite()"><img width = "20"src="/assets/heart.png"/></button>
-                    <div class="card-body">
-                        <div class="row marginStart">
-                            <div class="col-s-14">
-                                   <h3>{{recipe.name}}</h3> 
-                            </div>
-                            <div class="col-s-2 veg-Non-Veg" [ngClass] = "recipe.type == 'Veg' ? 'veg' : 'non-veg'">                                    
+    <div class="modal-body row">
+        <div class="col-md-6">
+            <div *ngIf="RecipeArray.length > 0;else noDataFound">
+                <div class="col">
+                    <div class="row paddingTop" *ngFor="let recipe of RecipeArray">
+                        <div class="card border-dark" appHighlight style="width: 25rem;" (click)="openDetial(recipe.id)">
+                            <div class="card-body">
+                                <div class="row marginStart">
+                                    <div class="col-s-14">
+                                        <h3>{{recipe.name}}</h3>
+                                    </div>
+                                    <div class="col-s-2 veg-Non-Veg"
+                                        [ngClass]="recipe.type == 'Veg' ? 'veg' : 'non-veg'">
+                                    </div>
+                                </div>
+                                <h6>By - {{recipe.chef}}</h6>
                             </div>
                         </div>
-                        <h6>👩‍🍳 {{recipe.chef}}</h6>
-                        <p class="card-text">{{recipe.description}}</p>
-                        
-                    </div>
 
+                    </div>
                 </div>
             </div>
         </div>
+
+        <div class="col-md-6">
+            <router-outlet></router-outlet>
+        </div>
+
     </div>
+
 
     <ng-template #noDataFound>
         <div>
