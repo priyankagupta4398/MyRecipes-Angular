@@ -50,11 +50,7 @@ export class RecipeManager {
 
     this.recipes.push(newRecipe1);
     this.recipes.push(newRecipe2);
-
     this.recipes.push(newRecipe3);
-
-
-
    }
 
   addNewRecipe(recipeModel: RecipeModel) {
@@ -81,15 +77,4 @@ export class RecipeManager {
       }
     });
   }
-
-  // revomeFav(id: number) {
-  //   this.recipes.forEach(element => {
-  //     if (element.id === id) {
-  //       element.isFavourite = false;
-  //       this.loggerService.demologger('Revoved from Fav --id : ' + id );
-
-  //     }
-  //   });
-  // }
-
 }

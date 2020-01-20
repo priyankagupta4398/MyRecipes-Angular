@@ -25,14 +25,9 @@ export class RecipeDetailCardComponent implements OnInit {
         });
       }
     );
-
-
   }
 
   add_removeFavourite(id: number) {
-
       this.recipeManger.addToFav(id);
-
   }
-
 }
