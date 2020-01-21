@@ -1,28 +1,28 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">My Recipes</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-            <a class="nav-item nav-link active" routerLinkActive="active"
-              [routerLinkActiveOptions]="{exact: true}" routerLink="/">Home<span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" routerLinkActive="active"
-              routerLink="addRecipe">Add Recipes</a>
-            <a class="nav-item nav-link" routerLinkActive="active"
-              routerLink="allRecipe">All Recipes</a>
-        </div>
+<div class = "bg-img">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">My Recipes</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+              <a class="nav-item nav-link active" routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}" routerLink="/">Home<span class="sr-only">(current)</span></a>
+              <a class="nav-item nav-link" routerLinkActive="active"
+                routerLink="addRecipe">Add Recipes</a>
+              <a class="nav-item nav-link" routerLinkActive="active"
+                routerLink="allRecipe">All Recipes</a>
+          </div>
+      </div>
+      <div>
+        <button class="btn btn-primary" (click)="onLoginRoute()">Login</button>
+      </div>
+    </nav>
+    <div class="row">
+      <div class="col-md-12">
+        <router-outlet></router-outlet>
+      </div>
     </div>
-    <div>
-      <button class="btn btn-primary" (click)="onLoginRoute()">Login</button>
-    </div>
-  </nav>
-  <div class="row">
-    <div class="col-md-12">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
-  
-  
+</div>
   
   

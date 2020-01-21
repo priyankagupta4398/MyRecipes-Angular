@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RecipeManager } from 'src/service/RecipeManager.service';
+import { tick } from '@angular/core/testing';
 @Component({
   selector: 'app-recipe-detail-card',
   templateUrl: './recipe-detail-card.component.html',
@@ -9,9 +10,11 @@ import { RecipeManager } from 'src/service/RecipeManager.service';
 export class RecipeDetailCardComponent implements OnInit {
 
   @Input() recipe;
+  public isFavourite = false;
+  public recipeArray = this.recipe;
   constructor(private route: ActivatedRoute, private recipeManger: RecipeManager) { }
   ngOnInit() {
-
+    this.getFavourites();
     const id = parseInt(this.route.snapshot.paramMap.get('id'));
 
     this.route.paramMap.subscribe(
@@ -29,5 +32,11 @@ export class RecipeDetailCardComponent implements OnInit {
 
   add_removeFavourite(id: number) {
       this.recipeManger.addToFav(id);
+      this.getFavourites();
+  }
+
+  getFavourites() {
+    this.recipeArray = this.recipeManger.getRecipes();
+    console.log(this.recipeArray);
   }
 }

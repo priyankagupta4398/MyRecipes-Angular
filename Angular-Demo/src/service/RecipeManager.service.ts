@@ -67,14 +67,18 @@ export class RecipeManager {
 
     this.recipes.forEach(element => {
       if (element.id === id) {
-        if (element.isFavourite !== true) {
-          element.isFavourite = true;
-          this.loggerService.demologger('Added to Fav --id : ' + id );
-        } else {
+        if (element.isFavourite === true) {
           element.isFavourite = false;
           this.loggerService.demologger('Removed from Fav --id : ' + id );
+        } else if (element.isFavourite === false){
+          element.isFavourite = true;
+          this.loggerService.demologger('Added to Fav --id : ' + id );
         }
       }
     });
   }
+  getRecipes() {
+    return this.recipes;
+  }
+
 }
