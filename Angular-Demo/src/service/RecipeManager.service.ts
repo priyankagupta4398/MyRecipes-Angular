@@ -15,11 +15,11 @@ export class RecipeManager {
     let newRecipe1 = new RecipeModel();
     newRecipe1 = {
         id: 1,
-        name: 'Pancake',
+        name: 'LimeJuice',
         chef: 'Priyanka',
-        image: 'https://www.foodiesfeed.com/wp-content/uploads/2019/04/mae-mu-pancakes-413x516.jpg',
+        image: 'https://www.foodiesfeed.com/wp-content/uploads/2019/04/mae-mu-pouring-water-413x516.jpg',
         type: 'Veg',
-        isFavourite: true,
+        isFavourite: false,
         description: desc
 
     };
@@ -31,7 +31,7 @@ export class RecipeManager {
         chef: 'Megha',
         image: 'https://www.foodiesfeed.com/wp-content/uploads/2019/08/girl-holding-a-juicy-beef-burger-413x275.jpg',
         type: 'Non-Veg',
-        isFavourite: true,
+        isFavourite: false,
         description: desc
 
     };

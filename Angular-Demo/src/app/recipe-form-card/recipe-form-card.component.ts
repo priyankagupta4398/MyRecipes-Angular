@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { RecipeManager } from 'src/service/RecipeManager.service';
 import { Logger } from 'src/service/Logger.service';
 import { RecipeModel } from 'src/models/RecipeModel.model';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-recipe-form-card',
@@ -10,7 +11,7 @@ import { RecipeModel } from 'src/models/RecipeModel.model';
 })
 
 export class RecipeFormCardComponent implements OnInit {
-    constructor(private loggerService: Logger, private recipeManager: RecipeManager) { }
+    constructor(private loggerService: Logger, private recipeManager: RecipeManager, private route: Router) { }
     @Output() backToParent = new EventEmitter<any>();
 
     name = '';
@@ -41,6 +42,7 @@ export class RecipeFormCardComponent implements OnInit {
         this.description = '';
         this.image = '';
         this.type = '';
+        this.route.navigate(['/allRecipe']);
     }
 
 }
