@@ -1,11 +1,8 @@
 .bg-img {
     /* The image used */
     background-image: url("src/assets/bgImage.jpg");
-  
     /* Control the height of the image */
     min-height: 1080px;
-  
-   
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
@@ -13,7 +10,7 @@
     position: relative;
   }
   a:link, a:visited { 
-    background-color: #848686; 
+   text-emphasis-color: white;
     color: white; 
     padding: 10px 25px; 
     text-align: center; 
