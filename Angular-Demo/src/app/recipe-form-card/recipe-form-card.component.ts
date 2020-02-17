@@ -3,6 +3,8 @@ import { RecipeManager } from 'src/service/RecipeManager.service';
 import { Logger } from 'src/service/Logger.service';
 import { RecipeModel } from 'src/models/RecipeModel.model';
 import { Router } from '@angular/router';
+import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+import { CustomValidators } from './Validators';
 
 @Component({
     selector: 'app-recipe-form-card',
@@ -14,35 +16,37 @@ export class RecipeFormCardComponent implements OnInit {
     constructor(private loggerService: Logger, private recipeManager: RecipeManager, private route: Router) { }
     @Output() backToParent = new EventEmitter<any>();
 
-    name = '';
-    chef = '';
-    description = '';
-    image = '';
-    type = '';
+    form: FormGroup;
 
     ngOnInit() {
+
         this.loggerService.demologger('Form Add New Recipe Called');
+
+        this.form = new FormGroup({
+            name: new FormControl(null, Validators.required),
+            preparationTime: new FormControl(null, [Validators.required, CustomValidators.validRecipeTime]),
+            serves: new FormControl(null, [Validators.required, CustomValidators.validNoOfServes]),
+            metaTags: new FormArray([]),
+            ytUrl: new FormControl(null, [Validators.required, CustomValidators.validYouTubeUrl])
+        });
+
+        this.form.statusChanges.subscribe((status) => {
+            console.log(status);
+        });
+    }
+    addmetaTags() {
+        const control = new FormControl(null, Validators.required);
+        (this.form.get('metaTags') as FormArray).push(control);
     }
 
     addRecipes() {
-        let newRecipe = new RecipeModel();
-        newRecipe = {
-            id: null,
-            name: this.name,
-            chef: this.chef,
-            image: this.image,
-            type: this.type,
-            isFavourite: false,
-            description: this.description
+        console.log('Vlaue of add Form====');
+        console.log(this.form);
 
-        };
-        this.recipeManager.addNewRecipe(newRecipe);
-        this.name = '';
-        this.chef = '';
-        this.description = '';
-        this.image = '';
-        this.type = '';
-        this.route.navigate(['/allRecipe']);
+        // this.recipeManager.addNewRecipe(this.form.value);
+        // this.route.navigate(['/allRecipe']);
     }
+
+
 
 }

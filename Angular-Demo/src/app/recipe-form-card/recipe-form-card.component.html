@@ -1,31 +1,65 @@
 <div class="container  marginTop">
     <h3 class="text-center text-uppercase font-weight-bold" style="color: white">Add Recipes</h3>
+    <form [formGroup]="form" (submit)="addRecipes()" class="form-padding  form-bg-img">
 
-    <div>
-        <form class="form-padding  form-bg-img">
-            <div class="form-group">
-                <label  class="form-control" class="font-weight-bold">Recipes name: </label> <br>
-                <input  class="form-control" #input type="text"  placeholder="Add name of your Recipes" [(ngModel)]="name" [ngModelOptions]="{standalone: true}"/> 
+
+        <div class="form-group">
+            <label class="form-control" class="font-weight-bold">Recipes name: </label> <br>
+            <input class="form-control" #input type="text" placeholder="Add name of your Recipes"
+                formControlName="name" />
+            <span class="text-muted" *ngIf="form.get('name').touched && !form.get('name').valid">Please enter recipe
+                name</span>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control" class="font-weight-bold">Preparation Time:</label> <br>
+            <input class="form-control" #input type="text" placeholder="Time Requried"
+                formControlName="preparationTime" />
+            <span class="text-muted" *ngIf="form.get('preparationTime').touched && 
+                !form.get('preparationTime').valid && !form.get('preparationTime').errors['validRecipeTime']">Please
+                enter preparation time</span>
+            <span class="text-muted" *ngIf="form.get('preparationTime').touched && 
+                !form.get('preparationTime').valid && form.get('preparationTime').errors['validRecipeTime']">Please
+                enter valid time in Mins/hours/Days</span>
+        </div>
+        <div class="form-group">
+            <label class="form-control" class="font-weight-bold">No of Serves:</label> <br>
+            <input class="form-control" #input type="text" placeholder="Enter number of serves"
+                formControlName="serves" />
+            <span class="text-muted" *ngIf="form.get('serves').touched && 
+                !form.get('serves').valid && !form.get('serves').errors['validNoOfServes']">Please enter number of
+                serves</span>
+            <span class="text-muted" *ngIf="form.get('serves').touched && 
+                !form.get('serves').valid && form.get('serves').errors['validNoOfServes']">Please enter valid no of
+                Serves</span>
+        </div>
+        <div class="form-group">
+            <label class="form-control" class="font-weight-bold">YouTube URL:</label> <br>
+            <input class="form-control" #input type="text" placeholder="Enter youtube url"
+                formControlName="ytUrl" />
+            <span class="text-muted" *ngIf="form.get('ytUrl').touched && 
+                !form.get('ytUrl').valid && !form.get('ytUrl').errors['validYouTubeUrl'] ">Please enter youtube url</span>
+            <span class="text-muted" *ngIf="form.get('ytUrl').touched && 
+                !form.get('ytUrl').valid && form.get('ytUrl').errors['validYouTubeUrl']">Please enter valid youtube url</span>
+        </div>
+
+        <div formArrayName="metaTags">
+            <label class="form-control" class="font-weight-bold">Meta Tags:</label> <br>
+
+            <button class="btn btn-primary" (click)="addmetaTags()">Add</button>
+
+            <div *ngFor="let control of form.get('metaTags').controls; let i = index">
+                <input type="text" class="form-control" placeholder="Enter Tag" [formControlName]="i">
+                <span class="text-muted"
+                    *ngIf="form.get('metaTags').controls[i].touched && !form.get('metaTags').controls[i].valid">Please
+                    enter
+                    tag</span>
             </div>
-            <div class="form-group">
-                <label  class="form-control" class="font-weight-bold"> Chef Name:  </label> <br>
-                <input  class="form-control" #input type="text" placeholder="Add your name here" [(ngModel)]="chef" [ngModelOptions]="{standalone: true}" /> 
-            </div>
-            <div class="form-group">
-                    <label  class="form-control" class="font-weight-bold"> Description:  </label> <br>
-                    <textarea  class="form-control" #input type="text-area" [(ngModel)]="description" [ngModelOptions]="{standalone: true}" > </textarea> 
-            </div>
-            <div class="form-group">
-                <label  class="form-control" class="font-weight-bold"> Type of Food:</label> <br>
-                <input  class="form-control" #input type="text" placeholder="Veg or Non-veg" [(ngModel)]="type" [ngModelOptions]="{standalone: true}"/> 
-            </div>
-            <div class="form-group">
-                <label  class="form-control" class="font-weight-bold">Enter image URL: </label>  <br>
-                <input  class="form-control" #input type="text" placeholder="Enter url of image" [(ngModel)]="image"  [ngModelOptions]="{standalone: true}"/>   
-            </div>
-            <div class="form-group text-right">
-                <button  class="form-control" type="button" class="btn btn-lg btn-primary " (click)= "addRecipes()"> + Add Recipes</button> <br>
-            </div>      
-        </form>
-    </div>
+        </div>
+
+        <div class="form-group text-right">
+            <button type="submit" class="btn btn-lg btn-primary " class="btn btn-primary" > + Add Recipe</button>
+        </div>
+
+    </form>
 </div>

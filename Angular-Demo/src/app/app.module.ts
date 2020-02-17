@@ -15,6 +15,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from 'src/service/auth.service';
 import { AuthGuard } from 'src/service/auth-guard.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AuthGuard } from 'src/service/auth-guard.service';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    ReactiveFormsModule
     // Routing
   ],
   providers: [Logger, RecipeManager, AuthService, AuthGuard],
