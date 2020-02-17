@@ -1,4 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { RecipeManager } from 'src/service/RecipeManager.service';
+import { Logger } from 'src/service/Logger.service';
+import { RecipeModel } from 'src/models/RecipeModel.model';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-recipe-form-card',
@@ -7,7 +11,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 
 export class RecipeFormCardComponent implements OnInit {
-
+    constructor(private loggerService: Logger, private recipeManager: RecipeManager, private route: Router) { }
     @Output() backToParent = new EventEmitter<any>();
 
     name = '';
@@ -16,29 +20,29 @@ export class RecipeFormCardComponent implements OnInit {
     image = '';
     type = '';
 
-    // Recipes = [{
-    //     name: String,
-    //     chef: String,
-    //     image: String,
-    //     type: String
-    // }];
-    // addedRecipes = [];
-
-    constructor() {
-    }
-
     ngOnInit() {
+        this.loggerService.demologger('Form Add New Recipe Called');
     }
 
     addRecipes() {
-        // this.addedRecipes = this.Recipes;
-        // console.log(this.Recipes);
-        this.backToParent.emit({addedRecipes : [{name: this.name, chef: this.chef, description: this.description, type: this.type, image: this.image}]});
+        let newRecipe = new RecipeModel();
+        newRecipe = {
+            id: null,
+            name: this.name,
+            chef: this.chef,
+            image: this.image,
+            type: this.type,
+            isFavourite: false,
+            description: this.description
+
+        };
+        this.recipeManager.addNewRecipe(newRecipe);
         this.name = '';
         this.chef = '';
+        this.description = '';
         this.image = '';
         this.type = '';
-        this.description = '';
+        this.route.navigate(['/allRecipe']);
     }
 
 }
