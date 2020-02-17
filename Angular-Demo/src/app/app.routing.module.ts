@@ -29,7 +29,7 @@ const routes: Routes = [
     },
     {
       path: 'addRecipe',
-      // canActivate: [AuthGuard],
+      canActivate: [AuthGuard],
       component: RecipeFormCardComponent,
     },
     {
