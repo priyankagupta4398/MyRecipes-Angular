@@ -96,8 +96,13 @@
             <div class="row paddingStart">
                 <label class="form-control" class="font-weight-bold ">Instruction:</label> <br>
 
-                <button class="btn btn-outline-dark " (click)="addinstructions()">+</button>
-                <i class="fa fa-plus" aria-hidden="true"></i>
+                <!-- <button (click)="addinstructions()"><i class="fa fa-plus" aria-hidden="true"></i></button> -->
+                <span (click)="addinstructions()">
+                    <div>
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                    </div>
+                </span>
+
 
             </div>
 
@@ -120,6 +125,5 @@
                 [ngClass]="isValid == true ? 'light' : 'dark '"> + Add
                 Recipe</button>
         </div>
-
     </form>
 </div>
