@@ -15,10 +15,10 @@
             <label class="form-control" class="font-weight-bold">Preparation Time:</label> <br>
             <input class="form-control" #input type="text" placeholder="Time Requried"
                 formControlName="preparationTime" />
-            <span class="text-muted" *ngIf="form.get('preparationTime').touched && 
+            <span class="text-muted" *ngIf="form.get('preparationTime').dirty && 
                 !form.get('preparationTime').valid && !form.get('preparationTime').errors['validRecipeTime']">Please
                 enter preparation time</span>
-            <span class="text-muted" *ngIf="form.get('preparationTime').touched && 
+            <span class="text-muted" *ngIf="form.get('preparationTime').dirty && 
                 !form.get('preparationTime').valid && form.get('preparationTime').errors['validRecipeTime']">Please
                 enter valid time in Mins/hours/Days</span>
         </div>
@@ -29,20 +29,21 @@
             <span class="text-muted" *ngIf="form.get('serves').touched && 
                 !form.get('serves').valid && !form.get('serves').errors['validNoOfServes']">Please enter number of
                 serves</span>
-            <span class="text-muted" *ngIf="form.get('serves').touched && 
+            <span class="text-muted" *ngIf="form.get('serves').dirty && 
                 !form.get('serves').valid && form.get('serves').errors['validNoOfServes']">Please enter valid no of
                 Serves</span>
         </div>
-       
+
         <div class="form-group">
-            <label for="complexcity" class="form-control" class="font-weight-bold"> Select Complexcity*</label> &nbsp; &nbsp; &nbsp;
-            <select id="complexcity" formControlName="complexcity"class="browser-default custom-select" >
-            
-                <option value="1" selected>Easy</option>
-                <option value="2">Medium</option>
-                <option value="3">Hard</option>
+            <label for="complexcity" class="form-control" class="font-weight-bold"> Select Complexcity*</label> &nbsp;
+            &nbsp; &nbsp;
+            <select id="complexcity" formControlName="complexcity" class="browser-default custom-select">
+
+                <option value="Easy" selected>Easy</option>
+                <option value="Medium">Medium</option>
+                <option value="Hard">Hard</option>
             </select>
-           
+
         </div>
 
         <div class="form-group">
@@ -51,43 +52,17 @@
             <span class="text-muted" *ngIf="form.get('ytUrl').touched && 
                 !form.get('ytUrl').valid && !form.get('ytUrl').errors['validYouTubeUrl'] ">Please enter youtube
                 url</span>
-            <span class="text-muted" *ngIf="form.get('ytUrl').touched && 
+            <span class="text-muted" *ngIf="form.get('ytUrl').dirty && 
                 !form.get('ytUrl').valid && form.get('ytUrl').errors['validYouTubeUrl']">Please enter valid youtube
                 url</span>
         </div>
-
-        <div formArrayName="ingredients">
-            <label class="form-control" class="font-weight-bold">ingredients:</label> <br>
-
-            <button class="btn btn-primary" (click)="addingredients()">Add</button>
-
-            <div *ngFor="let control of form.get('ingredients').controls; let i = index">
-                <input type="text" class="form-control" placeholder="Enter ingredient" [formControlName]="i">
-                <span class="text-muted"
-                    *ngIf="form.get('ingredients').controls[i].touched && !form.get('ingredients').controls[i].valid">Please
-                    enter ingredient
-                    </span>
-            </div>
-        </div>
-        <div formArrayName="instructions">
-            <label class="form-control" class="font-weight-bold">instructions:</label> <br>
-
-            <button class="btn btn-primary" (click)="addinstructions()">Add</button>
-
-            <div *ngFor="let control of form.get('instructions').controls; let i = index">
-                <input type="text" class="form-control" placeholder="Enter instruction" [formControlName]="i">
-                <span class="text-muted"
-                    *ngIf="form.get('instructions').controls[i].touched && !form.get('instructions').controls[i].valid">Please
-                    enter
-                    instruction</span>
-            </div>
-        </div>
         <div formArrayName="metaTags">
-            <label class="form-control" class="font-weight-bold">Meta Tags:</label> <br>
+            <div class="form-control" class="row paddingStart">
+                <label class="form-control" class="font-weight-bold">Meta Tags:</label> <br>
 
-            <button class="btn btn-primary" (click)="addmetaTags()">Add</button>
-
-            <div *ngFor="let control of form.get('metaTags').controls; let i = index">
+                <button class="btn btn-outline-dark" (click)="addmetaTags()">Add</button>
+            </div>
+            <div *ngFor="let control of form.get('metaTags').controls; let i = index" class="marginTopMedium">
                 <input type="text" class="form-control" placeholder="Enter Tag" [formControlName]="i">
                 <span class="text-muted"
                     *ngIf="form.get('metaTags').controls[i].touched && !form.get('metaTags').controls[i].valid">Please
@@ -96,8 +71,54 @@
             </div>
         </div>
 
-        <div class="form-group text-right">
-            <button type="submit" class="btn btn-lg btn-primary " class="btn btn-primary"> + Add Recipe</button>
+
+
+
+        <div formArrayName="ingredients">
+            <div class="row paddingStart">
+                <label class="form-control" class="font-weight-bold ">Ingredients:</label> <br>
+
+                <button class="btn btn-outline-dark " (click)="addingredients()">+</button>
+            </div>
+            <div *ngFor="let control of form.get('ingredients').controls; let i = index" class="marginTopMedium">
+                <div class="row paddingStart">
+                    <input type="text" class="form-control" placeholder="Enter ingredient" [formControlName]="i">
+                </div>
+                <span class="text-muted"
+                    *ngIf="form.get('ingredients').controls[i].touched && !form.get('ingredients').controls[i].valid">Please
+                    enter ingredient
+                </span>
+            </div>
+        </div>
+
+
+        <div formArrayName="instructions">
+            <div class="row paddingStart">
+                <label class="form-control" class="font-weight-bold ">Instruction:</label> <br>
+
+                <button class="btn btn-outline-dark " (click)="addinstructions()">+</button>
+                <i class="fa fa-plus" aria-hidden="true"></i>
+
+            </div>
+
+            <div *ngFor="let control of form.get('instructions').controls; let i = index" class="marginTopMedium">
+                <div class="row">
+                    
+                    <input type="text" class="form-control" placeholder="Enter instruction" [formControlName]="i">
+                </div>
+                <span class="text-muted"
+                    *ngIf="form.get('instructions').controls[i].touched && !form.get('instructions').controls[i].valid">Please
+                    enter
+                    instruction</span>
+
+            </div>
+
+        </div>
+
+        <div class="form-group text-right marginTopMedium">
+            <button type="submit" class="btn btn-lg btn-primary btn-block "
+                [ngClass]="isValid == true ? 'light' : 'dark '"> + Add
+                Recipe</button>
         </div>
 
     </form>

@@ -3,17 +3,21 @@ import { AbstractControl, ValidationErrors } from '@angular/forms';
 
 export class CustomValidators {
     static validRecipeTime(control: AbstractControl): ValidationErrors | null {
-        const validTimes = ['day', Number + ' ' + 'mins', Number + ' ' + 'hours'];
-        if (control.value && !validTimes.includes(control.value)) {
+        const timepattern = new RegExp(/(^[0-9]{1,2})\s*(?:minutes|mins?|days?|day?|hours?)?$/);
+        if (!timepattern.test(control.value)) {
             return { validRecipeTime: true };
         }
         return null;
+
     }
     static validNoOfServes(control: AbstractControl): ValidationErrors | null {
         const validServes = [];
-        for (let i = 0; i < 11; i++) {
+        for (let i = 1; i < 11; i++) {
             validServes.push('' + i);
         }
+        console.log('validServes');
+        console.log(validServes);
+
         if (control.value && !validServes.includes(control.value)) {
             return { validNoOfServes: true };
         }

@@ -17,8 +17,9 @@ export class RecipeFormCardComponent implements OnInit {
     @Output() backToParent = new EventEmitter<any>();
 
     form: FormGroup;
-    complexcityTypes: [{'type': 'Easy'}, {'type': 'Medium'}, {'type': 'Hard'}
-                         ];
+    complexcityTypes: [{ 'type': 'Easy' }, { 'type': 'Medium' }, { 'type': 'Hard' }
+    ];
+    isValid = false;
     ngOnInit() {
 
         this.loggerService.demologger('Form Add New Recipe Called');
@@ -36,10 +37,13 @@ export class RecipeFormCardComponent implements OnInit {
 
         this.form.statusChanges.subscribe((status) => {
             console.log(status);
+            if (status === 'VALID') {
+                this.isValid = true;
+            }
         });
         this.form.patchValue({
-            complexcity: '1'
-            });
+            complexcity: 'Easy'
+        });
     }
     addmetaTags() {
         const control = new FormControl(null, Validators.required);
