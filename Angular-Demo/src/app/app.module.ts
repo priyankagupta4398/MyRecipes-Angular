@@ -16,6 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthService } from 'src/service/auth.service';
 import { AuthGuard } from 'src/service/auth-guard.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import {HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     AppRoutingModule,
     Ng2SearchPipeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
     // Routing
   ],
   providers: [Logger, RecipeManager, AuthService, AuthGuard],

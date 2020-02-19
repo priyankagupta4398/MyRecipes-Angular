@@ -17,7 +17,8 @@ export class RecipeFormCardComponent implements OnInit {
     @Output() backToParent = new EventEmitter<any>();
 
     form: FormGroup;
-
+    complexcityTypes: [{'type': 'Easy'}, {'type': 'Medium'}, {'type': 'Hard'}
+                         ];
     ngOnInit() {
 
         this.loggerService.demologger('Form Add New Recipe Called');
@@ -27,16 +28,30 @@ export class RecipeFormCardComponent implements OnInit {
             preparationTime: new FormControl(null, [Validators.required, CustomValidators.validRecipeTime]),
             serves: new FormControl(null, [Validators.required, CustomValidators.validNoOfServes]),
             metaTags: new FormArray([]),
-            ytUrl: new FormControl(null, [Validators.required, CustomValidators.validYouTubeUrl])
+            complexcity: new FormControl('', [Validators.required]),
+            ytUrl: new FormControl(null, [Validators.required, CustomValidators.validYouTubeUrl]),
+            ingredients: new FormArray([]),
+            instructions: new FormArray([]),
         });
 
         this.form.statusChanges.subscribe((status) => {
             console.log(status);
         });
+        this.form.patchValue({
+            complexcity: '1'
+            });
     }
     addmetaTags() {
         const control = new FormControl(null, Validators.required);
         (this.form.get('metaTags') as FormArray).push(control);
+    }
+    addingredients() {
+        const control = new FormControl(null, Validators.required);
+        (this.form.get('ingredients') as FormArray).push(control);
+    }
+    addinstructions() {
+        const control = new FormControl(null, Validators.required);
+        (this.form.get('instructions') as FormArray).push(control);
     }
 
     addRecipes() {

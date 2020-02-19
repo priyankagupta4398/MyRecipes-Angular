@@ -1,5 +1,5 @@
 import { AbstractControl, ValidationErrors } from '@angular/forms';
-// import { validateUrl } from 'youtube-validate';
+// import { validateUrl } from '../../../node_modules/youtube-validat';
 
 export class CustomValidators {
     static validRecipeTime(control: AbstractControl): ValidationErrors | null {
@@ -32,24 +32,13 @@ export class CustomValidators {
         });
     }
 
-    static validYouTubeUrl(control: AbstractControl): ValidationErrors | null {
-        //    validateUrl(control.value)
-        //    .then(res => {
-            return null;
-        //    }).catch({
-        //     return {validYouTubeUrl: true}
-        //    });
-        // return new Promise((resolve, reject) => {
-        //     validateUrl(control.value)
-        //    .then(res => {
-        //        console.log("Res YOutube Url");
-        //     console.log(res);
-
-            // resolve(null);
-        //    }).catch({
-        //    // resolve({ validYouTubeUrl: true });
-        //    });
-        // });
+    static validYouTubeUrl(control: AbstractControl): ValidationErrors | null  {
+        // tslint:disable-next-line: max-line-length
+        const urlPattern = new RegExp(/^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/);
+        if (!urlPattern.test(control.value)) {
+            return { validYouTubeUrl: true };
+        }
+        return null;
     }
 
 
