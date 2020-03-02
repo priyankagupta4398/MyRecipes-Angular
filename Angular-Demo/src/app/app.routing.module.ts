@@ -11,6 +11,7 @@ import { RecipeHomeComponent } from './recipe-home/recipe-home.component';
 import { RecipeDetailCardComponent } from './recipe-detail-card/recipe-detail-card.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from 'src/service/auth-guard.service';
+import { AuthInterceptorService } from './login/auth-interceptor.service';
 
 
 const routes: Routes = [

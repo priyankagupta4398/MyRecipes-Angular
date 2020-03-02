@@ -1,7 +1,8 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { Logger } from 'src/service/Logger.service';
-import { RecipeManager } from 'src/service/RecipeManager.service';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { RecipeService } from 'src/app/recipe-service';
 
 @Component({
   selector: 'app-recipe-card',
@@ -10,25 +11,32 @@ import { Router } from '@angular/router';
 })
 export class RecipeCardComponent implements OnInit, OnChanges {
 
-  constructor(private loggerService: Logger, private recipeManager: RecipeManager, private route: Router) {
-
-   }
-  RecipeArray = this.recipeManager.recipes;
+  loadRecipe: any;
+  RecipeArray = [];
+  constructor(private recipeService: RecipeService, private loggerService: Logger, private route: Router, private http: HttpClient) { }
 
   ngOnInit() {
-
-    this.loggerService.demologger('List  Page Calledddd');
-    console.log(this.RecipeArray);
+    this.recipeService.getListOfRecipe().subscribe(responseData => {
+      this.loadRecipe = responseData;
+      this.tranceForm(this.loadRecipe);
+    });
+  }
+  tranceForm(Data) {
+    for (const key in Data) {
+      if (Data.hasOwnProperty(key)) {
+        this.RecipeArray.push({ ...Data[key], id: key });
+      }
+    }
+    // this.loggerService.demologger( this.RecipeArray );
+    return;
   }
 
   ngOnChanges() {
     this.loggerService.demologger('List Page Change Called');
   }
 
-
   openDetial(id: number) {
     this.loggerService.demologger('Clicked id: ' + id);
     this.route.navigate(['/allRecipe', id]);
   }
-
 }

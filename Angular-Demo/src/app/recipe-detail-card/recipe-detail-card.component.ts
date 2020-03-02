@@ -1,42 +1,30 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { RecipeManager } from 'src/service/RecipeManager.service';
 import { tick } from '@angular/core/testing';
+import { HttpClient } from '@angular/common/http';
+import { RecipeService } from 'src/app/recipe-service';
+
 @Component({
   selector: 'app-recipe-detail-card',
   templateUrl: './recipe-detail-card.component.html',
   styleUrls: ['./recipe-detail-card.component.scss']
 })
 export class RecipeDetailCardComponent implements OnInit {
-
-  recipe;
+  recipe = {};
   public isFavourite = false;
-  public recipeArray = this.recipe;
-  constructor(private route: ActivatedRoute, private recipeManger: RecipeManager) { }
+  constructor(private recipeService: RecipeService, private route: ActivatedRoute, private http: HttpClient) { }
+
   ngOnInit() {
-    // this.getFavourites();
     const id = parseInt(this.route.snapshot.paramMap.get('id'));
-
-    this.route.paramMap.subscribe(
-      data => {
-        console.log(data.get('id'));
-        this.recipeManger.recipes.forEach(element => {
-          if (parseInt(data.get('id')) === element.id) {
-            this.recipe = element;
-            console.log('From detail screen == ' + this.recipe);
-          }
-        });
-      }
-    );
+    this.recipeService.getRecipedetail(id).subscribe(responseData => {
+      console.log(responseData);
+      this.recipe = responseData;
+    });
   }
 
-  add_removeFavourite(id: number) {
-      this.recipeManger.addToFav(id);
-      // this.getFavourites();
+  add_removeFavourite(recipeId) {
+   this.recipeService.addToFavourite(recipeId).subscribe(responseData => {
+      console.log(responseData)
+    });  
   }
-
-  // getFavourites() {
-  //   this.recipeArray = this.recipeManger.getRecipes();
-  //   console.log(this.recipeArray);
-  // }
 }

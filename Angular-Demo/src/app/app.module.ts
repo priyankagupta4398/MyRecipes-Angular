@@ -16,7 +16,8 @@ import { LoginComponent } from './login/login.component';
 import { AuthService } from 'src/service/auth.service';
 import { AuthGuard } from 'src/service/auth-guard.service';
 import { ReactiveFormsModule } from '@angular/forms';
-import {HttpClientModule } from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptorService } from './login/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,13 @@ import {HttpClientModule } from '@angular/common/http';
     HttpClientModule
     // Routing
   ],
-  providers: [Logger, RecipeManager, AuthService, AuthGuard],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    },
+    Logger, RecipeManager, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 

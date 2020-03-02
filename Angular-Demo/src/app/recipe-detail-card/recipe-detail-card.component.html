@@ -1,13 +1,13 @@
 <div class="card border-dark" style="width: 22rem;" appHighlight>
 
     <div id="content">
-        <img src="{{ recipe.image }}" class="card-img-top custom-img" alt="Not Found"
+        <img src="{{ recipe.photo }}" class="card-img-top custom-img" alt="Not Found"
         onerror="this.src='https://cdn.dribbble.com/users/189859/screenshots/3639645/abc.gif'"> 
-        <div *ngIf="!recipe.isFavourite">
-            <img src="assets/heartBlank.png" class="imageLike" (click)="add_removeFavourite(recipe.id)">
+        <div *ngIf="recipe.inCookingList == 0">
+            <img src="assets/heartBlank.png" class="imageLike" (click)="add_removeFavourite(recipe.recipeId)">
         </div>
-        <div *ngIf="recipe.isFavourite">
-            <img src="assets/heart.png" class="imageLike" (click)="add_removeFavourite(recipe.id)">
+        <div *ngIf="recipe.inCookingList == 1">
+            <img src="assets/heart.png" class="imageLike" (click)="add_removeFavourite(recipe.recipeId)">
         </div>
     </div>
    
@@ -20,7 +20,7 @@
             <div class="col-s-2 veg-Non-Veg" [ngClass]="recipe.type == 'Veg' ? 'veg' : 'non-veg'">
             </div>
         </div>
-        <h6>👩‍🍳 {{recipe.chef}}</h6>
+        <h6>👩‍🍳 {{recipe.firstName}} {{recipe.lastName}}</h6>
         <p class="card-text">{{recipe.description}}</p>
 
     </div>
