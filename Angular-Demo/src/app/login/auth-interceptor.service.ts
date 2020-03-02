@@ -7,18 +7,18 @@ import {
 } from '@angular/common/http';
 import { take, exhaustMap } from 'rxjs/operators';
 import { LoginService } from './login.service';
+import { Logger } from 'src/service/Logger.service';
 
 @Injectable()
 export class AuthInterceptorService implements HttpInterceptor {
-  constructor(private loginService: LoginService) {}
+  constructor(private loginService: LoginService, private loggerService: Logger) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-    console.log('inside login');
     return this.loginService.loggedInUser.pipe(
       take(1),
       exhaustMap(user => {
         // if (!user) {
-        //   return next.handle(req);
+        //   return next.handle(req); 
         // }
         const modifiedReq = req.clone({
             headers: new HttpHeaders({

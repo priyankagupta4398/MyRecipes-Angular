@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { Logger } from 'src/service/Logger.service';
 
 @Injectable({
     providedIn: 'root'
@@ -10,13 +11,12 @@ import { catchError } from 'rxjs/operators';
 
 export class RecipeService {
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router,  private loggerService: Logger) { }
 
   addRecipe(value) {
-    console.log(value);
-    const data = JSON.parse(localStorage.getItem('userData'));
+    this.loggerService.demologger('Add recipe api Called');
     return this.http.post(
-      'http://localhost:3000/groceryOwner/addCustomer/' + data.id, value
+      'http://localhost:3000/groceryOwner/addCustomer/', value
     )
     .pipe(
       catchError(this.handleError)
@@ -24,6 +24,7 @@ export class RecipeService {
   }
 
   getRecipedetail(recipeId) {
+    this.loggerService.demologger('get recipe  detail api Called');
     return this.http.get(
       'http://35.160.197.175:3006/api/v1/recipe/' + recipeId + '/details',
     ).pipe(
@@ -32,7 +33,7 @@ export class RecipeService {
   }
   
   getListOfRecipe() {
-    console.log('Get List of api Called');
+    this.loggerService.demologger('Get List of api Called');
     return this.http.get(
       'http://35.160.197.175:3006/api/v1/recipe/feeds'
     ).pipe(
@@ -41,25 +42,40 @@ export class RecipeService {
   }
 
   getFavouriteRecipe() {
-    const data = JSON.parse(localStorage.getItem('userData'));
+    this.loggerService.demologger('Get List of FAvourite API  Called');
     return this.http.get(
-      'http://localhost:3000/groceryOwner/showDeletedCustomer/' + data.id
+      'http://35.160.197.175:3006/api/v1/recipe/cooking-list'
+    ).pipe(
+      catchError(this.handleError)
     );
   }
 
-  addToFavourite(recipeId) {
-    return this.http.post(
-      'http://35.160.197.175:3006/api/v1/recipe/add-to-cooking-list', recipeId
+  addToFavourite(id: number) {
+    this.loggerService.demologger('Add to FAvourite API  Called');
+    let data = {
+      recipeId: id,
+    }
+    return this.http.post('http://35.160.197.175:3006/api/v1/recipe/add-to-cooking-list', data).pipe(
+      catchError(this.handleError)
     );
   }
+
+  removeFromFavourite(recipeId) {
+    this.loggerService.demologger('remove from FAvourite API  Called');
+    let data = {
+      recipeId: recipeId,
+    }
+    return this.http.post('http://35.160.197.175:3006/api/v1/recipe/rm-from-cooking-list', data).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   deleteRecipe(value) {
-    console.log(value);
     this.http.post(
       'http://localhost:3000/groceryOwner/updateProfile', value
     )
     .subscribe(responseData => {
-      console.log(responseData);
-      this.router.navigate(['/groceryOwner/profile']);
+      this.loggerService.demologger(responseData);
     });
   }
 

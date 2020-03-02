@@ -4,7 +4,7 @@ import { BehaviorSubject, throwError, from } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { User } from './user.model';
 import { Router } from '@angular/router';
-
+import { Logger } from 'src/service/Logger.service';
 
 @Injectable({
     providedIn: 'root'
@@ -18,7 +18,7 @@ export class LoginService {
     'password': string
   };
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private loggerService: Logger) { }
   loggedInUser = new BehaviorSubject<User>(null);
 
   login(value) {
@@ -29,7 +29,7 @@ export class LoginService {
       catchError(this.handleError),
       tap(responseData => {
         this.loadedUser = responseData;
-        console.log(this.loadedUser.user._id);
+        this.loggerService.demologger(this.loadedUser.user._id);
         this.handleAuthentication(
           this.loadedUser.user.Role,
           this.loadedUser.user.ownerEmail,
@@ -70,7 +70,7 @@ export class LoginService {
     token: string
   ) {
     const user = new User(Role , email, userId, token);
-    console.log(user);
+    this.loggerService.demologger(user);
     this.loggedInUser.next(user);
     localStorage.setItem('isLoggedin', 'true');
     localStorage.setItem('userData', JSON.stringify(user));

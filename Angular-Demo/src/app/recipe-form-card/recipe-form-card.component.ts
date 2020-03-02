@@ -20,10 +20,8 @@ export class RecipeFormCardComponent implements OnInit {
     complexcityTypes: [{ 'type': 'Easy' }, { 'type': 'Medium' }, { 'type': 'Hard' }
     ];
     isValid = false;
+
     ngOnInit() {
-
-        this.loggerService.demologger('Form Add New Recipe Called');
-
         this.form = new FormGroup({
             name: new FormControl(null, Validators.required),
             preparationTime: new FormControl(null, [Validators.required, CustomValidators.validRecipeTime]),
@@ -36,7 +34,7 @@ export class RecipeFormCardComponent implements OnInit {
         });
 
         this.form.statusChanges.subscribe((status) => {
-            console.log(status);
+            this.loggerService.demologger(status);
             if (status === 'VALID') {
                 this.isValid = true;
             }
@@ -59,13 +57,6 @@ export class RecipeFormCardComponent implements OnInit {
     }
 
     addRecipes() {
-        console.log('Vlaue of add Form====');
-        console.log(this.form);
-
-        // this.recipeManager.addNewRecipe(this.form.value);
-        // this.route.navigate(['/allRecipe']);
+        this.loggerService.demologger(this.form);
     }
-
-
-
 }

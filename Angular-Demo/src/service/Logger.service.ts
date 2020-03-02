@@ -6,7 +6,7 @@ export class Logger {
 
   constructor() { }
 
-  demologger(log: string) {
+  demologger(log: any) {
     console.log(log);
   }
 

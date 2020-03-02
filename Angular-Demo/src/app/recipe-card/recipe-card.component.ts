@@ -27,7 +27,6 @@ export class RecipeCardComponent implements OnInit, OnChanges {
         this.RecipeArray.push({ ...Data[key], id: key });
       }
     }
-    // this.loggerService.demologger( this.RecipeArray );
     return;
   }
 
@@ -36,7 +35,6 @@ export class RecipeCardComponent implements OnInit, OnChanges {
   }
 
   openDetial(id: number) {
-    this.loggerService.demologger('Clicked id: ' + id);
     this.route.navigate(['/allRecipe', id]);
   }
 }

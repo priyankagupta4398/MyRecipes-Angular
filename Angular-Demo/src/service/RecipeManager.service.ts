@@ -69,10 +69,8 @@ export class RecipeManager {
       if (element.id === id) {
         if (element.isFavourite === true) {
           element.isFavourite = false;
-          this.loggerService.demologger('Removed from Fav --id : ' + id );
         } else if (element.isFavourite === false){
           element.isFavourite = true;
-          this.loggerService.demologger('Added to Fav --id : ' + id );
         }
       }
     });
