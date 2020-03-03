@@ -13,14 +13,36 @@ export class RecipeService {
 
   constructor(private http: HttpClient, private router: Router,  private loggerService: Logger) { }
 
-  addRecipe(value) {
+  addRecipe(recipeDetail) {
     this.loggerService.demologger('Add recipe api Called');
     return this.http.post(
-      'http://localhost:3000/groceryOwner/addCustomer/', value
-    )
-    .pipe(
-      catchError(this.handleError)
-    );
+      'http://35.160.197.175:3006/api/v1/recipe/add', recipeDetail).pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  addIngredients(ingredients, recipeId) {
+    this.loggerService.demologger('Add Ingredients api Called');
+    const data = {
+      ingredient : ingredients,
+      recipeId : (`recipeId`),
+    };
+    return this.http.post(
+      'http://35.160.197.175:3006/api/v1/recipe/add-ingredient', data).pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  addInstruction(instructions, recipeId) {
+    this.loggerService.demologger('Add Instruction api Called');
+    const data = {
+      instruction: instructions,
+      recipeId : (`recipeId`),
+    };
+    return this.http.post(
+      'http://35.160.197.175:3006/api/v1/recipe/add-instruction', data).pipe(
+        catchError(this.handleError)
+      );
   }
 
   getRecipedetail(recipeId) {
@@ -31,7 +53,6 @@ export class RecipeService {
       catchError(this.handleError)
     );
   }
-  
   getListOfRecipe() {
     this.loggerService.demologger('Get List of api Called');
     return this.http.get(
@@ -52,9 +73,9 @@ export class RecipeService {
 
   addToFavourite(id: number) {
     this.loggerService.demologger('Add to FAvourite API  Called');
-    let data = {
+    const data = {
       recipeId: id,
-    }
+    };
     return this.http.post('http://35.160.197.175:3006/api/v1/recipe/add-to-cooking-list', data).pipe(
       catchError(this.handleError)
     );
@@ -62,9 +83,9 @@ export class RecipeService {
 
   removeFromFavourite(recipeId) {
     this.loggerService.demologger('remove from FAvourite API  Called');
-    let data = {
-      recipeId: recipeId,
-    }
+    const data = {
+      recipeId : (`recipeId`),
+    };
     return this.http.post('http://35.160.197.175:3006/api/v1/recipe/rm-from-cooking-list', data).pipe(
       catchError(this.handleError)
     );

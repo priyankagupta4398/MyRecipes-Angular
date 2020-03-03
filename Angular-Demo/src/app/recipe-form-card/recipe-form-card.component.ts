@@ -1,10 +1,10 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { RecipeManager } from 'src/service/RecipeManager.service';
 import { Logger } from 'src/service/Logger.service';
-import { RecipeModel } from 'src/models/RecipeModel.model';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { CustomValidators } from './Validators';
+import { RecipeService } from 'src/app/recipe-service';
 
 @Component({
     selector: 'app-recipe-form-card',
@@ -13,13 +13,16 @@ import { CustomValidators } from './Validators';
 })
 
 export class RecipeFormCardComponent implements OnInit {
-    constructor(private loggerService: Logger, private recipeManager: RecipeManager, private route: Router) { }
+    constructor(private recipeService: RecipeService, private loggerService: Logger) { }
     @Output() backToParent = new EventEmitter<any>();
 
     form: FormGroup;
-    complexcityTypes: [{ 'type': 'Easy' }, { 'type': 'Medium' }, { 'type': 'Hard' }
+    complexityTypes: [{ 'type': 'Easy' }, { 'type': 'Medium' }, { 'type': 'Hard' }
     ];
+    recipeId;
     isValid = false;
+    instructions;
+    ingredients;
 
     ngOnInit() {
         this.form = new FormGroup({
@@ -27,7 +30,7 @@ export class RecipeFormCardComponent implements OnInit {
             preparationTime: new FormControl(null, [Validators.required, CustomValidators.validRecipeTime]),
             serves: new FormControl(null, [Validators.required, CustomValidators.validNoOfServes]),
             metaTags: new FormArray([]),
-            complexcity: new FormControl('', [Validators.required]),
+            complexity: new FormControl('', [Validators.required]),
             ytUrl: new FormControl(null, [Validators.required, CustomValidators.validYouTubeUrl]),
             ingredients: new FormArray([]),
             instructions: new FormArray([]),
@@ -40,7 +43,7 @@ export class RecipeFormCardComponent implements OnInit {
             }
         });
         this.form.patchValue({
-            complexcity: 'Easy'
+            complexity: 'Easy'
         });
     }
     addmetaTags() {
@@ -57,6 +60,25 @@ export class RecipeFormCardComponent implements OnInit {
     }
 
     addRecipes() {
-        this.loggerService.demologger(this.form);
+        this.recipeService.addRecipe(this.form.value).subscribe(responseData => {
+        this.loggerService.demologger(responseData[`id`]);
+        this.recipeId = responseData[`id`];
+        // this.addInstructionsAPICall();
+        // this.addIngredientsAPICall();
+        });
+    }
+
+    addInstructionsAPICall() {
+        this.instructions = (this.form.get('instructions') as FormArray);
+        this.recipeService.addInstruction(this.instructions, this.recipeId).subscribe(responseData => {
+            this.loggerService.demologger(responseData);
+        });
+    }
+
+    addIngredientsAPICall() {
+        this.ingredients = (this.form.get('ingredients') as FormArray);
+        this.recipeService.addIngredients(this.ingredients, this.recipeId).subscribe(responseData => {
+            this.loggerService.demologger(responseData);
+        });
     }
 }

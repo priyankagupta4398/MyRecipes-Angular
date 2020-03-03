@@ -3,7 +3,6 @@
     width: 300px;
 }
 
-
 .example-element {
     margin-bottom: -10px;
   }
@@ -13,14 +12,7 @@
 }
 
 .form-bg-img {
-    /* The image used */
     background-image: url("src/assets/formBgImage.jpeg");
-  
-    /* Control the height of the image */
-    
-  
-   
-    /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -35,7 +27,6 @@
 }
 .light {
   opacity: 1;
-
 }
 .dark {
   opacity: 0.5;
@@ -46,4 +37,10 @@
 }
 .paddingStart {
   margin: 5px;
+}
+.paddingFromLeft {
+  margin: 15;
+}
+.textCenterALign {
+  margin-block-start: 10px;
 }
